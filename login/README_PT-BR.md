@@ -18,3 +18,7 @@ Senha: 1
 # Uso
 Digitar login, senha e Recaptcha manual solução ideal para não usar métodos terceiros tipo (google)
 Ao logar será redirecionado para main/index.php
+
+# Configuração
+Utilizando o xammpp:
+no arquivo php.ini descomentar o campo "extension=gd" para a imagem do recaptcha aparecer na tela de login

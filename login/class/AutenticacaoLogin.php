@@ -1,6 +1,8 @@
 <?php
 class AutenticacaoLogin {
     public static function autenticar($login, $senha, $captcha) {
+        // date_default_timezone_set('America/Sao_Paulo'); Padrão do fuso horário
+
         // Verificar se o CAPTCHA está correto
         if ($captcha != $_SESSION['captcha']) {
             // CAPTCHA incorreto

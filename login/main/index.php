@@ -7,7 +7,6 @@ $token = $_SESSION['token'];
 if(!AutenticacaoLogin::validarToken($token)) {
     header('Location: ../sessao-expirada');
 }
-
 ?>
 <!doctype html>
 <html lang="pt-br">

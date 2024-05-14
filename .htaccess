@@ -1,0 +1,11 @@
+# Ativar o módulo de reescrita do Apache
+RewriteEngine On
+
+# Verificar se o caminho requisitado não corresponde a um diretório existente
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Verificar se o caminho requisitado não corresponde a um arquivo existente
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Redirecionar a requisição para o arquivo PHP correspondente sem a extensão .php
+RewriteRule ^([^\.]+)$ $1.php [NC,L]

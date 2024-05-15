@@ -1,3 +1,3 @@
 document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("alertaDadosInvalidos").classList.remove("d-none");
+    document.getElementById("invalidDataAlert").classList.remove("d-none");
 })

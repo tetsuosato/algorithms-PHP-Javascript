@@ -1,31 +1,36 @@
 <?php
 session_start(); 
 include('config/config.php');
-require_once('class/AutenticacaoLogin.php');
+require_once('class/LoginAuthentication.php');
 
 // Verificar se o login
+// Check if login
 if(isset($_POST['acao'])) {
     $login = $_POST['login'];
-    $senha = $_POST['senha'];
+    $password = $_POST['password'];
     $captcha = $_POST['captcha'];
 
-    if(AutenticacaoLogin::autenticar($login, $senha, $captcha)) {
+    if(LoginAuthentication::authenticate($login, $password, $captcha)) {
         // Login bem-sucedido, redirecionar para a página inicial (index.php)
+        // Login successful, redirect to home page (index.php)
         header('Location: main/');
         exit();
     } else {
         // Dados inválidos
+        // Invalid data
         echo '<script src="js/password-invalid.js"></script>';
     }
 }
 
 // Se não estiver logado, exibir o formulário de login
+// If not logged in, display the login form
 if(isset($_SESSION['token'])){
     $token = $_SESSION['token'];
 
-    if(!AutenticacaoLogin::validarToken($token)) {
+    if(!LoginAuthentication::validateToken($token)) {
         // Token inválido ou expirado, redirecionar para de aviso de expiração
-        include('sessao-expirada');
+        // Invalid or expired token, redirect to expiration warning
+        include('session-expired');
         unset($_SESSION['login']);
         session_destroy();
         exit();
@@ -64,10 +69,15 @@ if(isset($_SESSION['token'])){
     </header>
     <main></main>
 
-    <div class="container col-sm-4 border border-2 border-secondary rounded p-3 mx-auto mt-5 bg-light text-dark">
+    <div class="container col-sm-4 border border-2 bg-light rounded p-3 mx-auto mt-5 bg-light text-dark">
+        <div class="text-center">
+            <h4>Dev Pablo Tetsuo Sato</h4>
+        </div>
+
         <!-- Alerta de Dados Inválidos -->
-        <div id="alertaDadosInvalidos" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
-            Dados inválidos. Por favor, verifique suas credenciais e tente novamente.
+        <!-- Invalid Data Alert -->
+        <div id="invalidDataAlert" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
+            Invalid data. Please check your credentials and try again.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
@@ -77,25 +87,26 @@ if(isset($_SESSION['token'])){
                 <input type="text" class="form-control" id="login" name="login" alt="Login" placeholder="Digite seu login">
             </div>
             <div class="mb-3">
-                <label for="senha" class="form-label">Senha</label>
+                <label for="password" class="form-label">Password</label>
                 <div class="input-group">
-                    <input type="password" class="form-control" id="senha" name="senha" alt="Senha" placeholder="Digite sua senha">
+                    <input type="password" class="form-control" id="password" name="password" alt="password" placeholder="Digite sua password">
                     <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                         <i class="bi bi-eye"></i>
                     </button>
                 </div>
             </div>
             <div class="row mb-3">
-                <label for="captcha" class="form-label">Digite o conteúdo da imagem</label>
+                <label for="captcha" class="form-label">Enter image content</label>
                 <div class="col">
                     <img src="functions/captcha.php" alt="CAPTCHA">
                 </div>
+                
                 <div class="col">
                     <input type="text" class="form-control" id="captcha" name="captcha">
                 </div>
             </div>
             <div class="d-grid col-6 mx-auto">
-                <button type="submit" class="btn btn-primary btn-block" name="acao" value="Entrar">Entrar</button>
+                <button type="submit" class="btn btn-primary btn-block" name="acao" value="Login">Login</button>
             </div>
         </form>
 

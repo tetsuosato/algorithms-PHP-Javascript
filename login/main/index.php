@@ -1,11 +1,11 @@
 <?php
 session_start(); 
 include('../config/config.php');
-require_once('../class/AutenticacaoLogin.php');
+require_once('../class/LoginAuthentication.php');
 
 $token = $_SESSION['token'];
-if(!AutenticacaoLogin::validarToken($token)) {
-    header('Location: ../sessao-expirada');
+if(!LoginAuthentication::validateToken($token)) {
+    header('Location: ../session-expired');
 }
 ?>
 <!doctype html>
@@ -36,21 +36,21 @@ if(!AutenticacaoLogin::validarToken($token)) {
             <!-- place navbar here -->
         </header>
         <main></main>
-        <div class="container" style="border: 1px solid red;">
-            <h1>BEM VINDO AO SISTEMA!</h1>
+        <div class="container bg-light">
+            <h1>WELCOME TO THE SYSTEM!</h1>
             <h2>Instagram: @pablo_sato</h2>
-            <h3><a href="https://github.com/tetsuosato" target="_blank" rel="Siga-me no Github">Siga-me no GitHub</a></h3>
-            <p>Olá <?= $_SESSION['nome'].' '.$_SESSION['sobrenome'] ?></p>
+            <h3><a href="https://github.com/tetsuosato" target="_blank" rel="Siga-me no Github">Follow me on GitHub</a></h3>
+            <p>Hello <?= $_SESSION['name'].' '.$_SESSION['lastname'] ?></p>
             <br><br>
-            <a href="#" id="logout">Sair</a>
+            <a href="#" id="logout">Exit</a>
         </div>
         
         <!-- Função Sair do sistema -->
-        <?php include('../modals/sair.html'); ?>
-        <script src="../js/sair.js"></script>
+        <?php include('../modals/exit.html'); ?>
+        <script src="../js/exit.js"></script>
 
         <footer>
-            <!-- place footer here -->
+        <!-- place footer here -->
         </footer>
 
         <!-- Bootstrap JavaScript Libraries -->

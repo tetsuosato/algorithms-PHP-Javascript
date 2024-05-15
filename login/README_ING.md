@@ -8,7 +8,7 @@ Instagram: https://www.instagram.com/pablo_sato/
 Default repository Algorithms_PHP_Javascript
 
 # Login
-File functions/password_encryption.php encrypts passwords;
+File functions/encryption_passwords.php encrypts passwords;
 By default, the password in the local database is "1";
 
 Example login:

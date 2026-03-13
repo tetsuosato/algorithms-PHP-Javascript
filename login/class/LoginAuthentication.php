@@ -26,7 +26,7 @@ class LoginAuthentication {
 
             // Consultar o banco de dados para obter a password criptografada
             // Query the database to obtain the encrypted password
-            $query = "SELECT `id`, `login`, `password`, `name`, `lastname`, `email` FROM users WHERE `login`= $loginForm";
+            $query = "SELECT `id`, `user`, `password`, `name`, `lastname`, `email` FROM users WHERE `email`= $loginForm";
             $result = $connection->query($query);
 
             // Verificar se houve resultados
@@ -34,7 +34,7 @@ class LoginAuthentication {
             if ($result->rowCount() == 1) {
                 $row = $result->fetch(PDO::FETCH_ASSOC);
                 $passwordHash = $row['password'];
-                $user = $row['login'];
+                $user = $row['user'];
                 $name = $row['name'];
                 $lastname = $row['lastname'];
                 $email = $row['email'];

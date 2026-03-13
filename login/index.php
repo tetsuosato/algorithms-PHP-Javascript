@@ -83,8 +83,8 @@ if(isset($_SESSION['token'])){
 
         <form method="post">
             <div class="mb-3">
-                <label for="login" class="form-label">Login</label>
-                <input type="text" class="form-control" id="login" name="login" alt="Login" placeholder="Digite seu login">
+                <label for="login" class="form-label">E-mail</label>
+                <input type="text" class="form-control" id="login" name="login" alt="Login" placeholder="Digite seu E-mail">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>

@@ -12,7 +12,7 @@ Arquivo functions/encryption_passwords.php criptografar passwords;
 No banco de dados local por padrão a password é "1";
 
 Exemplo de login:
-Login: pablo
+Login: pablosato@ymail.com
 password: 1
 
 # Uso

@@ -12,7 +12,7 @@ File functions/encryption_passwords.php encrypts passwords;
 By default, the password in the local database is "1";
 
 Example login:
-Username: pablo
+Username: pablosato@ymail.com
 Password: 1
 
 # Uso

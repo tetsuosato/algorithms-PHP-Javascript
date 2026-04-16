@@ -12,5 +12,5 @@ session_destroy();
 
 // Redireciona para a página de login
 // Redirects to login page
-header("Location: ../index");
+header("Location: ../");
 exit;

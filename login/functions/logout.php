@@ -3,8 +3,9 @@
 // Start the session
 session_start();
 
-// Remove a variável de sessão específica
-unset($_SESSION['login']);
+
+session_unset();
+
 
 // Destrói completamente a sessão
 // Remove specific session variable

@@ -33,6 +33,7 @@ if(isset($_SESSION['token'])){
         include('session-expired');
         unset($_SESSION['login']);
         session_destroy();
+        session_unset();
         exit();
     }else{
         header('Location: main/');

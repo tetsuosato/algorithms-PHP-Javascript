@@ -6,6 +6,7 @@ require_once('class/LoginAuthentication.php');
 if(!isset($_SESSION['token'])){
     unset($_SESSION['login']);
     session_destroy();
+    session_unset();
     header('Location: index');
     exit();
 }else{
@@ -16,6 +17,7 @@ if(!isset($_SESSION['token'])){
 if(isset($_GET['logoff'])){
     unset($_SESSION['login']);
     session_destroy();
+    session_unset();
     header('Location: index');
     exit();
 }

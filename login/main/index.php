@@ -1,11 +1,33 @@
 <?php
-session_start(); 
-include('../config/config.php');
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/',
+    'domain' => '',
+    'secure' => true, // só HTTPS
+    'httponly' => true,
+    'samesite' => 'Strict'
+]);
+
+session_start();
+
+$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
+$_SESSION['ua'] = $_SERVER['HTTP_USER_AGENT'];
+
+if ($_SESSION['ip'] !== $_SERVER['REMOTE_ADDR'] ||
+    $_SESSION['ua'] !== $_SERVER['HTTP_USER_AGENT']) {
+    session_destroy();
+    exit;
+}
+
+require_once('../config/config.php');
 require_once('../class/LoginAuthentication.php');
 
-$token = $_SESSION['token'];
-if(!LoginAuthentication::validateToken($token)) {
+if (empty($_SESSION['token']) || 
+    !LoginAuthentication::validateToken($_SESSION['token'])) {
+
+    session_destroy();
     header('Location: ../session-expired');
+    exit;
 }
 ?>
 <!doctype html>
